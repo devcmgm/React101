@@ -1,0 +1,9 @@
+{
+  "short_name": "Template Brand Demo",
+  "name": "Template Brand Demo",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
