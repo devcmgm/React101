@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {RouteComponentProps} from "react-router-dom";
+import {getData} from "../apiUtils/webRequest";
 
 function Copyright() {
     return (
@@ -49,6 +50,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn(props: RouteComponentProps) {
     const classes = useStyles();
+    useEffect(() => {
+        getData().then(res => {
+            console.log(res);
+        });
+    });
 
     return (
         <Container component="main" maxWidth="xs">
