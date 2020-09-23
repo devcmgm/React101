@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
-//import {useForm} from "react-hook-form";
-import {getData} from "../apiUtils/webRequest";
+import PersonForm from "./PersonForm";
 
 const {Wit, log} = require('node-wit');
 
@@ -11,12 +10,9 @@ const client = new Wit({
 
 
 export default function AskMe() {
-   // const {register, handleSubmit} = useForm();
-   // const [count, setCount] = useState(0);
 
     useEffect(() => {
 
-        getData();
         client.message('What is happening tomorrow ?').then((data: any) => {
             console.log('Ask Me: Yay, got Wit.ai response: ' + JSON.stringify(data));
         })
@@ -25,7 +21,7 @@ export default function AskMe() {
 
     return (
         <div className="Page1">
-            Ask Me
+
         </div>
     )
 };

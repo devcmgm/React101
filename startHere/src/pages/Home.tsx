@@ -1,11 +1,10 @@
 import React from 'react';
 import {RouteComponentProps} from "react-router-dom";
-import Activities from "./Activities";
-import AskMe from "./AskMe";
-import BannerMsg from "./BannerMsg";
 import Grid from '@material-ui/core/Grid';
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import PersonForm from "./PersonForm";
+
 
 function Copyright() {
     return (
@@ -27,13 +26,12 @@ class Home extends React.Component<RouteComponentProps> {
         return (
             <div>
                 <Grid container>
-                    <Grid item xs={12}>
-                        <BannerMsg/>
+                    <Grid item xs={6}>
+                        <PersonForm/>
                     </Grid>
-                </Grid>
-                <Activities/>
-                <AskMe/>
-                <Copyright/>
+                    <Grid item xs={6}>
+                        <Copyright/>
+                    </Grid> </Grid>
             </div>
         );
     }
