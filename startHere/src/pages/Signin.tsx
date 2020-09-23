@@ -88,6 +88,7 @@ export default function SignIn(props: RouteComponentProps) {
                         label="Remember me"
                     />
                     <Button
+                        id={"signin"}
                         type="submit"
                         fullWidth
                         variant="contained"

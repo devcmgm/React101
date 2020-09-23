@@ -2,6 +2,7 @@ import React from "react";
 import {useForm, UseFormMethods, SubmitHandler} from "react-hook-form";
 import '../apiUtils/WaitForRequests'
 import {waitForDeleteData, waitForGetData, waitForPostData, waitForPutData} from "../apiUtils/WaitForRequests";
+import Button from "@material-ui/core/Button";
 
 const {Wit, log} = require('node-wit');
 
@@ -90,11 +91,11 @@ export default function PersonForm() {
     return (
         <div>
             <h1>demo form</h1>
-            <Form<FormValues> onSubmit={onSubmit}>
+            <Form<FormValues>   onSubmit={onSubmit}>
                 {({errors, register}) => (
                     <>
                         <hr/>
-                        <Input  name="firstName" ref={register({
+                        <Input id={"personFirstName"} name="firstName" ref={register({
                             required: 'this is required',
                             minLength: {
                                 value: 2,
