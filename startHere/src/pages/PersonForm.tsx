@@ -1,12 +1,12 @@
 import React from "react";
 import {useForm, UseFormMethods, SubmitHandler} from "react-hook-form";
-import {postData, putData, doDelete, getData} from '../apiUtils/webRequest'
+import '../apiUtils/WaitForRequests'
+import {waitForDeleteData, waitForGetData, waitForPostData, waitForPutData} from "../apiUtils/WaitForRequests";
 
 const {Wit, log} = require('node-wit');
 
-
 const client = new Wit({
-    accessToken: 'CCRYRDP6SW7CWRVE5VGUBPH34MIOBYNV',
+    accessToken: 'WWEPV7GJEHGK3Y42FCJLFMNWT2GBS4WL',
     logger: new log.Logger(log.DEBUG) // optional
 });
 
@@ -27,7 +27,7 @@ type SelectProps = React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelect
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     ({options, ...props}, ref) => (
-        <select ref={ref} {...props}>
+        <select id={'foo'} ref={ref} {...props}>
             {options.map(({label, value}) => (
                 <option value={value}>{label}</option>
             ))}
@@ -41,8 +41,7 @@ type FormProps<TFormValues> = {
 };
 
 const Form = <TFormValues extends Record<string, any> = Record<string, any>>({
-                                                                                 onSubmit,
-                                                                                 children
+                                                                                 onSubmit, children
                                                                              }: FormProps<TFormValues>) => {
     const methods = useForm<TFormValues>();
     return (
@@ -53,27 +52,39 @@ const Form = <TFormValues extends Record<string, any> = Record<string, any>>({
 type FormValues = {
     firstName: string;
     lastName: string;
-    choose: string;
+    choose1: string;
 };
+const meaning = async (utterance: string) => {
 
-const demoURL = "http://localhost:3001";
+    await client.message(JSON.stringify(utterance), {})
+        .then((response: any) => {
+            var result = JSON.stringify(response.intents);
 
-async function waitForData() {
-    try {
-        await getData(demoURL).then(data => {
-            alert(JSON.stringify(data));
-        });
-    } catch (err) {
-        console.log('fetch failed', err);
-    }
-}
+            if (result === '[]') {
+                result = 'Sorry, I did not understand. Please try again'
+            } else {
+                result = response.intents[0].name;
+            }
+           console.log(result);
+           alert(result);
+        })
+        .catch(console.error);
+
+};
 
 export default function PersonForm() {
 
+
     const onSubmit = (data: FormValues) => {
-        alert(JSON.stringify(data));
+        //alert(JSON.stringify(data));
         console.log(data)
-        waitForData();
+          const demoData = JSON.stringify(data.choose1);
+        console.log({demoData});
+        if (data.choose1 === "get") console.log(waitForGetData());
+        if (data.choose1 === "post") console.log(waitForPostData(demoData));
+        if (data.choose1 === "put") console.log(waitForPutData(demoData));
+        if (data.choose1 === "delete") console.log(waitForDeleteData(demoData));
+        if (data.choose1 === "ask") console.log(meaning(data.lastName));
     };
 
     return (
@@ -83,7 +94,7 @@ export default function PersonForm() {
                 {({errors, register}) => (
                     <>
                         <hr/>
-                        <Input name="firstName" ref={register({
+                        <Input  name="firstName" ref={register({
                             required: 'this is required',
                             minLength: {
                                 value: 2,
@@ -98,14 +109,20 @@ export default function PersonForm() {
                             },
                         })}/>{errors.lastName?.message}
                         <Select
-                            name="choose"
-                            ref={register({required: "Choose"})}
+                            name="choose1"
+                            ref={register({ minLength: {
+                                    value: 3,
+                                    message: 'Choose Something !',
+                                },})}
                             options={[
-                                {label: "One", value: "one"},
-                                {label: "Two", value: "two"},
-                                {label: "Other", value: "other"}
+                                {label: "", value: ""},
+                                {label: "Get", value: 'get'},
+                                {label: "Post", value: "post"},
+                                {label: "Put", value: "put"},
+                                {label: "Delete", value: "delete"},
+                                {label: "ASK", value: "ask"}
                             ]}
-                        />
+                        />{errors.choose1?.message}
                         <br/>
                         <Input type="submit"/>
 

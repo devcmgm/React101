@@ -21,7 +21,7 @@ export default function AskMe() {
 
     return (
         <div className="Page1">
-          <PersonForm/>
+
         </div>
     )
 };
