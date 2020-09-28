@@ -6,8 +6,8 @@ import * as serviceWorker from './serviceWorker';
 const MyContext = React.createContext('');
 
 ReactDOM.render(
-    <MyContext.Provider value={'works'}>
-    <App />
+    <MyContext.Provider key={"context"} value={'works'}>
+    <App key={"app"}/>
     </MyContext.Provider>,
   document.getElementById('root')
 );

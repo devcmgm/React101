@@ -4,8 +4,8 @@ import AppRouter from "./AppRouter";
 
 function App() {
   return (
-    <div className="App">
-    <AppRouter/>
+    <div key={"app"} className="App">
+    <AppRouter key={"router"}/>
     </div>
   );
 }

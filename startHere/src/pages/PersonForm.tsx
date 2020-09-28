@@ -2,8 +2,7 @@ import React from "react";
 import {useForm, UseFormMethods, SubmitHandler} from "react-hook-form";
 import '../apiUtils/WaitForRequests'
 import {waitForDeleteData, waitForGetData, waitForPostData, waitForPutData} from "../apiUtils/WaitForRequests";
-import Button from "@material-ui/core/Button";
-
+import "./formStyle.css";
 const {Wit, log} = require('node-wit');
 
 const client = new Wit({
@@ -30,7 +29,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     ({options, ...props}, ref) => (
         <select id={'foo'} ref={ref} {...props}>
             {options.map(({label, value}) => (
-                <option value={value}>{label}</option>
+                <option key={value.toString()} value={value}>{label}</option>
             ))}
         </select>
     )
@@ -95,6 +94,7 @@ export default function PersonForm() {
                 {({errors, register}) => (
                     <>
                         <hr/>
+                        <label>Name</label>
                         <Input id={"personFirstName"} name="firstName" ref={register({
                             required: 'this is required',
                             minLength: {
@@ -102,6 +102,7 @@ export default function PersonForm() {
                                 message: 'Min length is 2',
                             },
                         })}/>{errors.firstName?.message}
+                        <label>Question Wit.AI</label>
                         <Input name="lastName" ref={register({
                             required: 'this is required',
                             minLength: {
@@ -109,7 +110,8 @@ export default function PersonForm() {
                                 message: 'Min length is 5',
                             },
                         })}/>{errors.lastName?.message}
-                        <Select
+                        <label>Action</label>
+                        <Select key={"selectme"}
                             name="choose1"
                             ref={register({ minLength: {
                                     value: 3,
@@ -125,7 +127,7 @@ export default function PersonForm() {
                             ]}
                         />{errors.choose1?.message}
                         <br/>
-                        <Input type="submit"/>
+                        <Input type="submit" value={"Do Something"}/>
 
 
                         <hr/>
