@@ -64,7 +64,7 @@ export default function SignIn(props: RouteComponentProps) {
         event.preventDefault();
 
         alert("here");
-        Auth.signIn("ZACLEWIS@GMAIL.COM", "P1a2s3s4!")
+        Auth.signIn("xx", "xx")
             .then(user => {
                console.log(user);
                 })
