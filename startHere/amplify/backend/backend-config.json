@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "demookta76906bfc": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

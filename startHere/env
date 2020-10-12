@@ -1,1 +1,4 @@
 export SKIP_PREFLIGHT_CHECK=true
+export S1=xxxxw3erefwfopwk34pkor2LKDi2CEWx7c2DLzS2bDFnLINI2ZcBlLv6nAMQltf
+export U1=AADSKWEKKWEK#$K#$KAKIAWBME7MKGMKG3DLZK
+#yarn add aws-amplify react-router-dom styled-components antd password-validator jwt-decode

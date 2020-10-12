@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-demookta-dev-84758-authRole",
+      "UnauthRoleArn": "arn:aws:iam::415280095884:role/amplify-demookta-dev-84758-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::415280095884:role/amplify-demookta-dev-84758-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-demookta-dev-84758-deployment",
+      "UnauthRoleName": "amplify-demookta-dev-84758-unauthRole",
+      "StackName": "amplify-demookta-dev-84758",
+      "StackId": "arn:aws:cloudformation:us-east-1:415280095884:stack/amplify-demookta-dev-84758/8b4fdbf0-0c91-11eb-ae7b-0aece6d977c1",
+      "AmplifyAppId": "d1glwro5d5m1lq"
+    },
+    "categories": {
+      "auth": {
+        "demookta76906bfc": {}
+      }
+    }
+  }
+}

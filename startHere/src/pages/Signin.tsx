@@ -13,6 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {RouteComponentProps} from "react-router-dom";
+import Amplify from 'aws-amplify';
+import { withAuthenticator } from 'aws-amplify-react';
+import { Auth } from 'aws-amplify';
+import aws_exports from '../aws-exports';
+Amplify.configure(aws_exports);
 
 function Copyright() {
     return (
@@ -26,6 +31,11 @@ function Copyright() {
         </Typography>
     );
 }
+
+
+
+
+
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -48,7 +58,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn(props: RouteComponentProps) {
+
     const classes = useStyles();
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
+
+        alert("here");
+        Auth.signIn("ZACLEWIS@GMAIL.COM", "P1a2s3s4!")
+            .then(user => {
+               console.log(user);
+                })
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -94,8 +114,9 @@ export default function SignIn(props: RouteComponentProps) {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => {
-                            props.history.push('/home');
+                        onClick={(e) => {
+                            handleSubmit(e);
+  //                          this.props.history.push("/home")
                         }}
                     >
                         Sign In
