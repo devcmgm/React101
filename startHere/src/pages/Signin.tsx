@@ -59,13 +59,12 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn(props: RouteComponentProps) {
 
     const classes = useStyles();
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = (event: any) => {
         event.preventDefault();
-
-        alert("here");
-        Auth.signIn("zaclewis@gmail.com", "P1a2s3s4!")
+        Auth.signIn("xx", "XX")
             .then(user => {
-               console.log(user);
+               //alert(JSON.stringify(user))
+               console.log(JSON.stringify(user.attributes.email));
                 })
     }
 
@@ -79,7 +78,7 @@ export default function SignIn(props: RouteComponentProps) {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate >
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -113,10 +112,7 @@ export default function SignIn(props: RouteComponentProps) {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={(e) => {
-                            handleSubmit(e);
-  //                          this.props.history.push("/home")
-                        }}
+                        onClick={handleSubmit}
                     >
                         Sign In
                     </Button>
