@@ -14,7 +14,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {RouteComponentProps} from "react-router-dom";
 import Amplify from 'aws-amplify';
-import { withAuthenticator } from 'aws-amplify-react';
 import { Auth } from 'aws-amplify';
 import aws_exports from '../aws-exports';
 Amplify.configure(aws_exports);
@@ -64,7 +63,7 @@ export default function SignIn(props: RouteComponentProps) {
         event.preventDefault();
 
         alert("here");
-        Auth.signIn("xx", "xx")
+        Auth.signIn("zaclewis@gmail.com", "P1a2s3s4!")
             .then(user => {
                console.log(user);
                 })
